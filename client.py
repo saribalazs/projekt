@@ -5,6 +5,10 @@ import próba as zene
 
 pygame.init()
 
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((socket.gethostname(),1250))
+
+
 fekete = (0,0,0)
 feher = (255,255,255)
 
@@ -41,16 +45,21 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
+    uzenet = s.recv(1024)
+    adatok = uzenet.decode("utf-8").replace('(','').replace(')','').replace(' ', '').strip().split(',')
 
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_w]:
-        paddleA.moveUp(5)
-    if keys[pygame.K_s]:
-        paddleA.moveDown(5)
-    if keys[pygame.K_UP]:
-        paddleB.moveUp(5)
-    if keys[pygame.K_DOWN]:
-        paddleB.moveDown(5)
+    igaz = False
+    if adatok[0] != '':
+        cyb = int(adatok[0])
+        cyj = int(adatok[1])
+        igaz = True
+    
+    if igaz:
+        paddleA.rect.y = cyj
+        paddleB.rect.y = cyb
+
+
+    
 
     all_sprites_list.update()
     
