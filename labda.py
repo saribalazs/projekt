@@ -1,10 +1,7 @@
 import pygame
 from random import randint
-import pymusicplayer
 
 fekete = (0,0,0)
-hang = pymusicplayer.MusicPlayer()
-hang.add_song("Ball Hits and Bounces on Floor Version 2.mp3")
 class Labda(pygame.sprite.Sprite):
     def __init__(self, color, width, height):
         super().__init__()
@@ -26,6 +23,3 @@ class Labda(pygame.sprite.Sprite):
     def bounce(self):
         self.velocity[0] = -self.velocity[0]
         self.velocity[1] = randint(-8,8)
-        hang.play()
-        hang.rewind()
-        
