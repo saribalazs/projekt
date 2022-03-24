@@ -1,6 +1,6 @@
 import pygame
 from random import randint
-import pymusicplayer
+
 
 fekete = (0,0,0)
 
