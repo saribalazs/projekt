@@ -1,7 +1,7 @@
 import pygame, sys, socket
 from paddle import Paddle
 from labda import Labda
-import próba as zene
+
 
 pygame.init()
 
